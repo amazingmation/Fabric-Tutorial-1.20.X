@@ -3,13 +3,24 @@ package net.amazingmation.tutorialmod;
 import net.amazingmation.tutorialmod.item.BulletOneItem;
 import net.amazingmation.tutorialmod.projectileentities.BulletOne;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.render.entity.ItemEntityRenderer;
+import net.minecraft.client.render.item.BuiltinModelItemRenderer;
+import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.model.BakedModelManager;
+import net.minecraft.client.texture.TextureManager;
+import net.minecraft.entity.*;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +36,10 @@ public static final EntityType<BulletOne> BulletOneEntityType = Registry.registe
 public static final Item BulletOneItem = new BulletOneItem(new Item.Settings().maxCount(1));
 	@Override
 	public void onInitialize() {
-		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_one"), BulletOneItem);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_one_item"), BulletOneItem);
+
+		EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, FlyingItemEntityRenderer::new);
+
 
 		LOGGER.info("Hello Fabric world!");
 	}

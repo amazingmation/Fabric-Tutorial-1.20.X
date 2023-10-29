@@ -19,6 +19,8 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
+import java.util.Objects;
+
 public class BulletOne extends ThrownItemEntity {
     public BulletOne(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -57,12 +59,12 @@ public class BulletOne extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         int i = entity instanceof LivingEntity ? 3 : 0;
-        entity.damage(getDamageSources().generic(), 4.0F);
+        entity.damage(getDamageSources().generic(), 10.0F);
 
         if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.addStatusEffect((new StatusEffectInstance(StatusEffects.NAUSEA, 5, 0)));
+            livingEntity.addStatusEffect((new StatusEffectInstance(StatusEffects.NAUSEA, 110, 0)));
             livingEntity.playSound(SoundEvents.ENTITY_VILLAGER_HURT, 2F, 1F);
-            livingEntity.pushAwayFrom(this.getOwner());
+            //livingEntity.pushAwayFrom(this.getOwner());
         }
     }
 
