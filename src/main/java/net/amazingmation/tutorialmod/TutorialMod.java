@@ -1,16 +1,15 @@
 package net.amazingmation.tutorialmod;
 
 import net.amazingmation.tutorialmod.item.BulletOneItem;
+import net.amazingmation.tutorialmod.item.GunOneItem;
 import net.amazingmation.tutorialmod.projectileentities.BulletOne;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.item.ItemColors;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.ItemEntityRenderer;
+import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModelManager;
@@ -33,13 +32,15 @@ public static final EntityType<BulletOne> BulletOneEntityType = Registry.registe
 		new Identifier(MOD_ID, "bullet_one"),
 		FabricEntityTypeBuilder.<BulletOne>create(SpawnGroup.MISC, BulletOne::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
 );
-public static final Item BulletOneItem = new BulletOneItem(new Item.Settings().maxCount(1));
+public static final Item BulletOneItem = new BulletOneItem(new Item.Settings().maxCount(16));
+public static final Item GunOneItem = new GunOneItem(new Item.Settings().maxCount(1));
 	@Override
 	public void onInitialize() {
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_one_item"), BulletOneItem);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "gun_one_item"), GunOneItem);
 
 		EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, FlyingItemEntityRenderer::new);
-
+		//EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, new EntityRenderer());
 
 		LOGGER.info("Hello Fabric world!");
 	}
