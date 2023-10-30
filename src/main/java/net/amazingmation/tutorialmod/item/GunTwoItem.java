@@ -1,9 +1,6 @@
 package net.amazingmation.tutorialmod.item;
 
-import net.amazingmation.tutorialmod.TutorialMod;
-import net.amazingmation.tutorialmod.mixin.StuffToTick;
 import net.amazingmation.tutorialmod.projectileentities.BulletOne;
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -11,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -19,8 +15,8 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 
-public class GunOneItem extends Item {
-    public GunOneItem(Settings settings) {
+public class GunTwoItem extends Item {
+    public GunTwoItem(Settings settings) {
         super(settings);
     }
 
@@ -44,11 +40,11 @@ public class GunOneItem extends Item {
         ItemStack itemStack = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.NEUTRAL, 0.5F, 1F);
 
-        user.getItemCooldownManager().set(this, 5);
+        user.getItemCooldownManager().set(this, 1);
 
         if (!world.isClient) {
             BulletOne bulletOneEntity = new BulletOne(world, user);
-            bulletOneEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 5F, 0.0F);
+            bulletOneEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 7F, 0.0F);
             world.spawnEntity(bulletOneEntity);
             Objects.requireNonNull(user).pushAwayFrom(user);
             movePlayerBackwards();

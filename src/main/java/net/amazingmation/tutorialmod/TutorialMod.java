@@ -2,6 +2,7 @@ package net.amazingmation.tutorialmod;
 
 import net.amazingmation.tutorialmod.item.BulletOneItem;
 import net.amazingmation.tutorialmod.item.GunOneItem;
+import net.amazingmation.tutorialmod.item.GunTwoItem;
 import net.amazingmation.tutorialmod.projectileentities.BulletOne;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
@@ -34,10 +35,12 @@ public static final EntityType<BulletOne> BulletOneEntityType = Registry.registe
 );
 public static final Item BulletOneItem = new BulletOneItem(new Item.Settings().maxCount(16));
 public static final Item GunOneItem = new GunOneItem(new Item.Settings().maxCount(1));
+	public static final Item GunTwoItem = new GunTwoItem(new Item.Settings().maxCount(1));
 	@Override
 	public void onInitialize() {
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_one_item"), BulletOneItem);
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "gun_one_item"), GunOneItem);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "gun_two_item"), GunTwoItem);
 
 		EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, FlyingItemEntityRenderer::new);
 		//EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, new EntityRenderer());
