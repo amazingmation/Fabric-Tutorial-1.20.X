@@ -1,6 +1,7 @@
 package net.amazingmation.tutorialmod;
 
 import net.amazingmation.tutorialmod.item.BulletOneItem;
+import net.amazingmation.tutorialmod.item.BulletProofArmor;
 import net.amazingmation.tutorialmod.item.GunOneItem;
 import net.amazingmation.tutorialmod.item.GunTwoItem;
 import net.amazingmation.tutorialmod.projectileentities.BulletOne;
@@ -16,6 +17,8 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.entity.*;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -35,12 +38,25 @@ public static final EntityType<BulletOne> BulletOneEntityType = Registry.registe
 );
 public static final Item BulletOneItem = new BulletOneItem(new Item.Settings().maxCount(16));
 public static final Item GunOneItem = new GunOneItem(new Item.Settings().maxCount(1));
+public static final ArmorMaterial BulletProofArmorMaterial = new BulletProofArmor();
+public static final Item BulletProofHelmet = new ArmorItem(BulletProofArmorMaterial, ArmorItem.Type.HELMET, new Item.Settings());
+public static final Item BulletProofChestplate = new ArmorItem(BulletProofArmorMaterial, ArmorItem.Type.CHESTPLATE, new Item.Settings());
+public static final Item BulletProofLeggings = new ArmorItem(BulletProofArmorMaterial, ArmorItem.Type.LEGGINGS, new Item.Settings());
+public static final Item BulletProofBoots = new ArmorItem(BulletProofArmorMaterial, ArmorItem.Type.BOOTS, new Item.Settings());
+
+
 	public static final Item GunTwoItem = new GunTwoItem(new Item.Settings().maxCount(1));
 	@Override
 	public void onInitialize() {
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_one_item"), BulletOneItem);
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "gun_one_item"), GunOneItem);
 		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "gun_two_item"), GunTwoItem);
+
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_proof_helmet"), BulletProofHelmet);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_proof_chesptplate"), BulletProofChestplate);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_proof_leggings"), BulletProofLeggings);
+		Registry.register(Registries.ITEM, new Identifier(MOD_ID, "bullet_proof_boots"), BulletProofBoots);
+
 
 		EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, FlyingItemEntityRenderer::new);
 		//EntityRendererRegistry.register(TutorialMod.BulletOneEntityType, new EntityRenderer());
